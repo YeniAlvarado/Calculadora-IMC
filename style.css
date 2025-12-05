@@ -1,0 +1,242 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+:root {
+  --bg-color: #f0f2f5;
+  --card-bg: #ffffff;
+  --primary: #4f46e5;
+  --primary-hover: #4338ca;
+  --secondary: #9ca3af;
+  --secondary-hover: #6b7280;
+  --text-dark: #1f2937;
+  --text-light: #6b7280;
+  
+  /* Colores del semáforo */
+  --color-underweight: #3b82f6; /* Azul */
+  --color-normal: #22c55e;      /* Verde */
+  --color-overweight: #f59e0b;  /* Naranja */
+  --color-obesity: #ef4444;     /* Rojo */
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--bg-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.container {
+  width: 100%;
+  max-width: 400px;
+}
+
+.card {
+  background: var(--card-bg);
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+h1 {
+  color: var(--text-dark);
+  margin-bottom: 5px;
+}
+
+.subtitle {
+  color: var(--text-light);
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.input-group {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 1.5rem;
+}
+
+.input-wrapper {
+  flex: 1;
+  text-align: left;
+}
+
+label {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--text-dark);
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+input {
+  width: 100%;
+  padding: 10px 15px;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+input:focus {
+  border-color: var(--primary);
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 1.5rem;
+}
+
+.btn {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s;
+  font-size: 1rem;
+}
+
+.btn.primary {
+  background-color: var(--primary);
+  color: white;
+}
+
+.btn.primary:hover {
+  background-color: var(--primary-hover);
+}
+
+.btn.secondary {
+  background-color: #e5e7eb;
+  color: var(--text-dark);
+}
+
+.btn.secondary:hover {
+  background-color: #d1d5db;
+}
+
+/* Resultados y Animaciones */
+.hidden {
+  display: none;
+}
+
+.result-container {
+  margin-top: 1rem;
+  border-top: 1px solid #e5e7eb;
+  padding-top: 1.5rem;
+  animation: fadeIn 0.5s ease;
+}
+
+.score-display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 1.5rem;
+}
+
+.traffic-light {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: #ddd;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.text-data {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+#imc-value {
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--text-dark);
+}
+
+#imc-category {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-light);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Barra Gráfica */
+.chart-container {
+  position: relative;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.bar-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: var(--text-light);
+  margin-bottom: 5px;
+}
+
+.bar-track {
+  height: 12px;
+  background-color: #e5e7eb;
+  border-radius: 6px;
+  position: relative;
+  overflow: hidden;
+}
+
+.bar-gradient {
+  width: 100%;
+  height: 100%;
+  /* Gradiente representando: Bajo peso (Azul) -> Normal (Verde) -> Sobrepeso (Amarillo) -> Obesidad (Rojo) */
+  background: linear-gradient(90deg, 
+    var(--color-underweight) 0%, 
+    var(--color-underweight) 46%, /* Hasta 18.5 aprox en escala 0-40 */
+    var(--color-normal) 46%, 
+    var(--color-normal) 62%,      /* Hasta 25 aprox */
+    var(--color-overweight) 62%, 
+    var(--color-overweight) 75%,  /* Hasta 30 aprox */
+    var(--color-obesity) 75%, 
+    var(--color-obesity) 100%);
+  opacity: 0.8;
+}
+
+.bar-marker {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background-color: #000;
+  transform: translateX(-50%);
+  transition: left 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 10;
+  border-radius: 2px;
+  box-shadow: 0 0 4px rgba(255,255,255,0.8);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
+@media (max-width: 350px) {
+  .input-group {
+    flex-direction: column;
+    gap: 10px;
+  }
+}

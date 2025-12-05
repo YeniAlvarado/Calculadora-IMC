@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="card">
+    <h1>Calculadora IMC</h1>
+    <p class="subtitle">Índice de Masa Corporal</p>
+
+    <div class="input-group">
+      <div class="input-wrapper">
+        <label for="weight">Peso (kg)</label>
+        <input type="number" id="weight" placeholder="Ej: 70" step="0.1" min="0">
+      </div>
+      <div class="input-wrapper">
+        <label for="height">Altura (m)</label>
+        <input type="number" id="height" placeholder="Ej: 1.75" step="0.01" min="0">
+      </div>
+    </div>
+
+    <div class="buttons">
+      <button id="calc-btn" class="btn primary">Calcular</button>
+      <button id="reset-btn" class="btn secondary">Restablecer</button>
+    </div>
+
+    <!-- Sección de Resultados (oculta al inicio) -->
+    <div id="result-container" class="result-container hidden">
+      
+      <div class="score-display">
+        <div id="traffic-light" class="traffic-light"></div>
+        <div class="text-data">
+          <span id="imc-value">0.00</span>
+          <span id="imc-category">---</span>
+        </div>
+      </div>
+
+      <!-- Barra gráfica visual -->
+      <div class="chart-container">
+        <div class="bar-labels">
+          <span>0</span>
+          <span>20</span>
+          <span>40+</span>
+        </div>
+        <div class="bar-track">
+          <div class="bar-gradient"></div>
+          <div id="bar-marker" class="bar-marker"></div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>

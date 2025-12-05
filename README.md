@@ -1,2 +1,6 @@
-# Calculadora-IMC
-Uso de prompt para crear una calculadora para el indice de masa corporal (IMC) para el curso de Desarrollo Agile de Productos de Software
+# Proyecto
+
+A Pen created on CodePen.
+
+Original URL: [https://codepen.io/Yeni25/pen/RNaqpRP](https://codepen.io/Yeni25/pen/RNaqpRP).
+
